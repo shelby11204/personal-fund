@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Personal Fund - The Future of Financial Industry</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Lightning Effects */
+        .lightning {
+            position: fixed;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(180deg, transparent, #667eea, transparent);
+            opacity: 0;
+            animation: lightning 4s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes lightning {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; transform: scaleY(1.2); }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: radial-gradient(ellipse at center, #1a0f2e 0%, #000 70%);
+            overflow: hidden;
+        }
+
+        .glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(102,126,234,0.15) 0%, transparent 70%);
+            filter: blur(100px);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.3); opacity: 0.6; }
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            z-index: 2;
+            letter-spacing: 3px;
+        }
+
+        .hero h2 {
+            font-size: 1.8em;
+            color: #a78bfa;
+            font-weight: 300;
+            margin-bottom: 40px;
+            z-index: 2;
+            letter-spacing: 2px;
+        }
+
+        /* Main Content */
+        .section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8em;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Concept Cards */
+        .concepts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 120px;
+        }
+
+        .concept-card {
+            background: linear-gradient(145deg, rgba(20,15,35,0.8), rgba(10,10,10,0.9));
+            border: 1px solid rgba(102,126,234,0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102,126,234,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .concept-card:hover::before {
+            left: 100%;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102,126,234,0.5);
+            box-shadow: 0 20px 60px rgba(102,126,234,0.3);
+        }
+
+        .concept-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(102,126,234,0.5));
+        }
+
+        .concept-card h3 {
+            font-size: 1.5em;
+            color: #a78bfa;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .concept-card p {
+            color: #c4b5fd;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            background: linear-gradient(180deg, #000 0%, #0a0514 50%, #000 100%);
+            padding: 100px 20px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .token-card {
+            background: linear-gradient(145deg, rgba(25,20,40,0.9), rgba(10,10,10,0.95));
+            border: 1px solid rgba(102,126,234,0.3);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .token-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(102,126,234,0.3), rgba(240,147,251,0.3));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .token-card:hover::after {
+            opacity: 1;
+        }
+
+        .token-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(102,126,234,0.4);
+        }
+
+        .token-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .token-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+        }
+
+        .token-symbol {
+            font-size: 1.8em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .token-name {
+            font-size: 0.9em;
+            color: #a78bfa;
+        }
+
+        .token-desc {
+            color: #c4b5fd;
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 60px 20px 30px;
+            border-top: 1px solid rgba(102,126,234,0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-icon {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s;
+        }
+
+        .footer-icon:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        .footer-text {
+            color: #a78bfa;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .hero h2 { font-size: 1.3em; }
+            .section-title { font-size: 2em; }
+            .concepts { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Lightning Effects -->
+    <div class="lightning" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="lightning" style="left: 30%; animation-delay: 1.5s;"></div>
+    <div class="lightning" style="left: 60%; animation-delay: 2.5s;"></div>
+    <div class="lightning" style="left: 85%; animation-delay: 3.5s;"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="glow"></div>
+        <h1>ALI PERSONAL FUND</h1>
+        <h2>THE FUTURE OF FINANCIAL INDUSTRY</h2>
+    </section>
+
+    <!-- Core Concepts -->
+    <section class="section">
+        <h2 class="section-title">Core Pillars</h2>
+        <div class="concepts">
+            <div class="concept-card">
+                <div class="concept-icon">₿</div>
+                <h3>Bitcoin as Digital Gold</h3>
+                <p>The first decentralized digital currency with a fixed supply of 21 million. Bitcoin serves as a store of value and hedge against inflation, adopted by institutions worldwide.</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">🏦</div>
+                <h3>DeFi Revolution</h3>
+                <p>Decentralized Finance eliminates intermediaries, providing open access to financial services 24/7. Smart contracts enable trustless lending, trading, and yield generation.</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">🌐</div>
+                <h3>RWA Tokenization</h3>
+                <p>Real-world assets like real estate, bonds, and commodities are tokenized on blockchain, enabling fractional ownership and global liquidity for traditionally illiquid assets.</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">🔗</div>
+                <h3>Web3 Infrastructure</h3>
+                <p>The next evolution of the internet built on blockchain. Web3 enables true digital ownership, decentralized applications, and user-controlled data without centralized platforms.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Holdings -->
+    <section class="portfolio-section">
+        <h2 class="section-title">Portfolio Holdings</h2>
+        <div class="portfolio-grid">
+            <div class="token-card">
+                <div class="token-header">
+                    <div class="token-logo">₿</div>
+                    <div>
+                        <div class="token-symbol">BTC</div>
+                        <div class="token-name">Bitcoin</div>
+                    </div>
+                </div>
+                <p class="token-desc">The largest cryptocurrency by market cap. Bitcoin's halving mechanism and institutional adoption make it the premier digital store of value, with growing acceptance as a reserve asset and payment method globally.</p>
+            </div>
+
+            <div class="token-card">
+                <div class="token-header">
+                    <div class="token-logo">🏛️</div>
+                    <div>
+                        <div class="token-symbol">ONDO</div>
+                        <div class="token-name">Ondo Finance</div>
+                    </div>
+                </div>
+                <p class="token-desc">Leading institutional-grade RWA tokenization platform. Ondo bridges traditional finance with DeFi, offering tokenized US Treasury bonds and investment-grade assets with full regulatory compliance.</p>
+            </div>
+
+            <div class="token-card">
+                <div class="token-header">
+                    <div class="token-logo">⚡</div>
+                    <div>
+                        <div class="token-symbol">XPL</div>
+                        <div class="token-name">XPL Protocol</div>
+                    </div>
+                </div>
+                <p class="token-desc">Cross-chain infrastructure solving blockchain interoperability. XPL enables seamless liquidity transfer and asset exchange across multiple blockchains, connecting fragmented DeFi ecosystems.</p>
+            </div>
+
+            <div class="token-card">
+                <div class="token-header">
+                    <div class="token-logo">💎</div>
+                    <div>
+                        <div class="token-symbol">ENA</div>
+                        <div class="token-name">Ethena</div>
+                    </div>
+                </div>
+                <p class="token-desc">Synthetic dollar protocol offering USDe stablecoin with native yield. Ethena uses delta-neutral hedging to maintain stability while generating returns, independent of traditional banking systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-icons">
+                <svg class="footer-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="btc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#btc-grad)" stroke-width="3"/>
+                    <path d="M 35 30 L 45 30 C 55 30 58 35 58 40 C 58 45 55 48 50 48 L 35 48 M 35 48 L 52 48 C 60 48 63 52 63 57 C 63 62 60 68 50 68 L 35 68 M 35 22 L 35 75 M 45 22 L 45 30 M 45 68 L 45 75 M 50 22 L 50 30 M 50 68 L 50 75" stroke="url(#btc-grad)" stroke-width="3" fill="none"/>
+                </svg>
+
+                <svg class="footer-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="ondo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#ondo-grad)" stroke-width="3"/>
+                    <rect x="30" y="35" width="40" height="30" fill="none" stroke="url(#ondo-grad)" stroke-width="3"/>
+                    <line x1="30" y1="45" x2="70" y2="45" stroke="url(#ondo-grad)" stroke-width="3"/>
+                    <line x1="30" y1="55" x2="70" y2="55" stroke="url(#ondo-grad)" stroke-width="3"/>
+                </svg>
+
+                <svg class="footer-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="xpl-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#xpl-grad)" stroke-width="3"/>
+                    <path d="M 30 35 L 50 50 L 30 65 M 70 35 L 50 50 L 70 65" stroke="url(#xpl-grad)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                <svg class="footer-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="ena-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#764ba2;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#ena-grad)" stroke-width="3"/>
+                    <path d="M 35 35 L 65 35 M 35 50 L 60 50 M 35 65 L 65 65" stroke="url(#ena-grad)" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <p class="footer-text">© 2025 Ali Personal Fund | The Future of Finance</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.concept-card, .token-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Parallax effect on hero
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            document.querySelector('.glow').style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>
